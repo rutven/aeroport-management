@@ -1,0 +1,35 @@
+@startuml Aeroport management system domain model
+
+class Airline {
+    String name
+}
+
+class Aeroport {
+    String code
+}
+
+class Flight {
+    Aeroport origin
+    Aeroport destination
+    Airline operator
+}
+
+Flight o-- Aeroport
+Flight o-- Airline
+
+class Plane {
+    String number
+    String model
+}
+
+class ScheduledFlight {
+    DateTime departure
+    DateTime arrival
+    Plane plane
+}
+
+ScheduledFlight o-- Plane
+
+Flight <|-- ScheduledFlight
+
+@enduml
