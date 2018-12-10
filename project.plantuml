@@ -9,6 +9,7 @@ class Aeroport {
 }
 
 class Flight {
+    String name
     Aeroport origin
     Aeroport destination
     Airline operator
@@ -22,14 +23,41 @@ class Plane {
     String model
 }
 
+class SeatMap {
+    Integer seatCount
+    Integer rowCount
+    String rowFormula
+    Integer deskCount
+}
+
+Plane "many" o-- "many" SeatMap
+
 class ScheduledFlight {
     DateTime departure
     DateTime arrival
     Plane plane
+
 }
 
 ScheduledFlight o-- Plane
-
 Flight <|-- ScheduledFlight
+
+class Passenger {
+    String firstName
+    String lastName    
+}
+
+class Ticket {
+    String gate
+    String seat
+}
+
+Ticket o-- ScheduledFlight
+Ticket o-- Passenger
+
+class Luggage {
+}
+
+Ticket o-- Luggage
 
 @enduml
